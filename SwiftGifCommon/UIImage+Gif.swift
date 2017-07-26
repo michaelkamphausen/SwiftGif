@@ -34,7 +34,7 @@ extension UIImage {
         return UIImage.animatedImageWithSource(source, scale: scale)
     }
 
-    public class func gif(url: String) -> UIImage? {
+    public class func gif(url: String, scale: CGFloat = 1) -> UIImage? {
         // Validate URL
         guard let bundleURL = URL(string: url) else {
             print("SwiftGif: This image named \"\(url)\" does not exist")
@@ -47,10 +47,10 @@ extension UIImage {
             return nil
         }
 
-        return gif(data: imageData)
+        return gif(data: imageData, scale: scale)
     }
 
-    public class func gif(name: String) -> UIImage? {
+    public class func gif(name: String, scale: CGFloat = 1) -> UIImage? {
         // Check for existance of gif
         guard let bundleURL = Bundle.main
           .url(forResource: name, withExtension: "gif") else {
@@ -64,7 +64,7 @@ extension UIImage {
             return nil
         }
 
-        return gif(data: imageData)
+        return gif(data: imageData, scale: scale)
     }
 
     internal class func delayForImageAtIndex(_ index: Int, source: CGImageSource!) -> Double {
